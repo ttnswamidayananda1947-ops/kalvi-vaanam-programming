@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalvi Vaanam Coding</title>
+
+<style>
+:root{
+  --primary:#1E88E5;
+  --dark:#0D47A1;
+  --light:#E3F2FD;
+  --hover:#1565C0;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:var(--light);
+}
+
+/* ================= FIXED HEADER ================= */
+header{
+  background:white;
+  padding:15px;
+  text-align:center;
+  border-bottom:3px solid var(--primary);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+}
+
+header p{
+  font-size:14px;
+  color:#444;
+}
+
+header h1{
+  color:var(--primary);
+  font-size:26px;
+  margin-top:5px;
+}
+
+/* ============= FIXED LANGUAGE BAR ============= */
+.languages{
+  background:var(--primary);
+  padding:12px 0;
+  overflow-x:auto;
+  white-space:nowrap;
+  position:fixed;
+  width:100%;
+  top:90px;   /* header height adjust */
+  z-index:999;
+}
+
+.languages a{
+  display:inline-block;
+  background:white;
+  color:var(--primary);
+  padding:8px 18px;
+  margin:0 8px;
+  border-radius:20px;
+  font-size:14px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.languages a:hover{
+  background:var(--dark);
+  color:white;
+}
+
+/* ============= MAIN CONTENT ============= */
+.main{
+  margin-top:150px;  /* header + language bar height */
+}
+
+/* HERO */
+.hero{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+
+.hero h2{
+  font-size:38px;
+  margin-bottom:25px;
+}
+
+/* SEARCH */
+.search-box{
+  display:flex;
+  justify-content:center;
+  margin-bottom:20px;
+}
+
+.search-box input{
+  width:60%;
+  max-width:400px;
+  padding:14px;
+  border:none;
+  border-radius:30px;
+  outline:none;
+  font-size:16px;
+}
+
+/* INFO TEXT */
+.info-text{
+  max-width:600px;
+  margin:0 auto;
+  font-size:16px;
+  line-height:1.6;
+  color:#bbdefb;
+}
+
+/* SEARCH RESULT */
+#results{
+  margin-top:15px;
+  font-size:18px;
+  color:#FFD54F;
+  font-weight:bold;
+}
+
+/* EXTRA CONTENT FOR SCROLL DEMO */
+.extra{
+  padding:60px 20px;
+  text-align:center;
+}
+
+footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <p>வானத்திற்கு எல்லை இல்லை, அதுபோன்று கல்விக்கு எல்லை இல்லை</p>
+  <h1>KALVI VAANAM</h1>
+</header>
+
+<div class="languages">
+  <a href="#">HTML</a>
+  <a href="#">CSS</a>
+  <a href="#">JavaScript</a>
+  <a href="#">Python</a>
+  <a href="#">Java</a>
+  <a href="#">C</a>
+  <a href="#">C++</a>
+  <a href="#">C#</a>
+  <a href="#">PHP</a>
+  <a href="#">SQL</a>
+</div>
+
+<div class="main">
+
+<section class="hero">
+  <h2>Learn to Code</h2>
+
+  <div class="search-box">
+    <input type="text" id="searchInput"
+    placeholder="Search here"
+    onkeyup="liveSearch()">
+  </div>
+
+  <div class="info-text" id="infoText">
+    கல்வி வானம் என்பது மாணவர்கள் எளிமையாக நிரலாக்க மொழிகளை கற்றுக்கொள்ள உருவாக்கப்பட்ட ஒரு தளம். 
+    இங்கு அடிப்படையிலிருந்து மேம்பட்ட நிலை வரை பயிற்சிகள் வழங்கப்படும். 
+    உங்கள் எதிர்காலத்தை நிரலாக்கத்தின் மூலம் கட்டியெழுப்புங்கள்.
+  </div>
+
+  <div id="results"></div>
+</section>
+
+<section class="extra">
+  <h3>More Content Coming Soon...</h3>
+  <p>Scroll down to see fixed header and language bar working perfectly.</p>
+</section>
+
+<footer>
+  © 2026 Kalvi Vaanam Coding
+</footer>
+
+</div>
+
+<script>
+
+const courses = ["html","css","javascript","python","java","c","c++","c#","php","sql"];
+
+function liveSearch(){
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let resultDiv = document.getElementById("results");
+  let infoText = document.getElementById("infoText");
+
+  if(input === ""){
+    resultDiv.innerHTML = "";
+    infoText.style.display = "block";
+    return;
+  }
+
+  let matched = courses.filter(course => course.includes(input));
+
+  if(matched.length > 0){
+    resultDiv.innerHTML = "✔ " + matched.join(", ").toUpperCase() + " Course Available";
+    infoText.style.display = "none";
+  } else {
+    resultDiv.innerHTML = "✖ No Course Found";
+    infoText.style.display = "none";
+  }
+}
+
+</script>
+
+</body>
+  </html>
