@@ -1,0 +1,40 @@
+{
+  "language": "JSON",
+  "topics": [
+    {
+      "id": "intro",
+      "title": "Introduction to JSON",
+      "content": "JSON stands for JavaScript Object Notation. It is a lightweight data format used for storing and transporting data."
+    },
+    {
+      "id": "syntax",
+      "title": "JSON Syntax",
+      "content": "JSON data is written in key-value pairs. Example:\n\n{\n  \"name\": \"Kalvi\",\n  \"age\": 18\n}"
+    },
+    {
+      "id": "datatypes",
+      "title": "JSON Data Types",
+      "content": "JSON supports:\n\n• String\n• Number\n• Boolean\n• Array\n• Object\n• null"
+    },
+    {
+      "id": "object",
+      "title": "JSON Object",
+      "content": "Objects are enclosed in curly braces {} and contain key-value pairs."
+    },
+    {
+      "id": "array",
+      "title": "JSON Array",
+      "content": "Arrays are enclosed in square brackets [] and can contain multiple values."
+    },
+    {
+      "id": "parse",
+      "title": "JSON.parse()",
+      "content": "JSON.parse() converts JSON string into JavaScript object."
+    },
+    {
+      "id": "stringify",
+      "title": "JSON.stringify()",
+      "content": "JSON.stringify() converts JavaScript object into JSON string."
+    }
+  ]
+}
