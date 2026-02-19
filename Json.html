@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JSON Course - கல்வி வானம்</title>
+<title>Kalvi Vaanam Course</title>
 
 <style>
 :root{
@@ -94,20 +94,45 @@ body{
   background:var(--light);
 }
 
+/* ===== OVERLAY ===== */
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.3);
+  display:none;
+  z-index:1500;
+}
+
+.overlay.active{
+  display:block;
+}
+
 /* ===== CONTENT ===== */
 .content{
   padding:20px;
 }
 
-.lesson-area{
-  background:white;
-  min-height:250px;
-  padding:30px;
-  border-radius:10px;
+/* ===== TOPIC TITLE ===== */
+.topic-title{
   margin-top:20px;
+  margin-bottom:15px;
+  font-size:22px;
+  color:var(--dark);
 }
 
-/* NAV BUTTONS */
+/* ===== BOXES ===== */
+.box{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  white-space:pre-wrap;
+}
+
+/* ===== NAV BUTTONS ===== */
 .nav-buttons{
   margin-top:20px;
   display:flex;
@@ -127,7 +152,7 @@ button:hover{
   background:var(--dark);
 }
 
-/* CODE EDITOR */
+/* ===== CODE EDITOR ===== */
 .editor{
   margin-top:30px;
 }
@@ -168,12 +193,15 @@ textarea{
 </div>
 
 <div class="sidemenu" id="menu"></div>
+<div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
 <div class="content">
 
-  <div class="lesson-area" id="lesson">
-    Loading...
-  </div>
+  <div class="topic-title" id="topicTitle"></div>
+
+  <div class="box" id="textBox"></div>
+  <div class="box" id="exampleBox"></div>
+  <div class="box" id="programBox"></div>
 
   <div class="nav-buttons">
     <button onclick="prevLesson()">Back</button>
@@ -182,12 +210,14 @@ textarea{
 
   <div class="editor">
     <textarea id="code">
-// Try JSON here
-let obj = {name:"Kalvi"};
-console.log(JSON.stringify(obj));
+// Write JSON here
+{
+  "name": "Kalvi Vaanam",
+  "type": "Course"
+}
     </textarea>
 
-    <button style="margin-top:10px;" onclick="runCode()">Run</button>
+    <button style="margin-top:10px;" onclick="runJSON()">Run</button>
 
     <div class="output" id="output">
 Output will appear here...
@@ -202,31 +232,47 @@ let topics = [];
 let currentIndex = 0;
 
 const menu = document.getElementById("menu");
-const lessonDiv = document.getElementById("lesson");
+const overlay = document.getElementById("overlay");
 
 function toggleMenu(){
   menu.classList.toggle("active");
+  overlay.classList.toggle("active");
 }
 
-/* ===== LOAD JSON FILE ===== */
-fetch("data/json.json")
-.then(res => res.json())
+function closeMenu(){
+  menu.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+/* ===== CONNECT JSON FILE ===== */
+fetch("./data/json.json")
+.then(response => {
+  if(!response.ok){
+    throw new Error("JSON file not found");
+  }
+  return response.json();
+})
 .then(data => {
-  topics = data.topics;
+  topics = data.topics || [];
   createMenu();
-  showLesson(0);
+  if(topics.length > 0){
+    showLesson(0);
+  }
+})
+.catch(error => {
+  document.getElementById("textBox").innerText = "Error loading JSON file.";
+  console.error(error);
 });
 
-/* ===== CREATE MENU FROM JSON ===== */
+/* ===== CREATE MENU ===== */
 function createMenu(){
   menu.innerHTML = "";
-
   topics.forEach((topic,index)=>{
     let item = document.createElement("div");
     item.innerText = topic.title;
     item.onclick = ()=>{
       showLesson(index);
-      toggleMenu();
+      closeMenu();
     };
     menu.appendChild(item);
   });
@@ -237,12 +283,13 @@ function showLesson(index){
   currentIndex = index;
   let topic = topics[index];
 
-  lessonDiv.innerHTML =
-    "<h2>"+topic.title+"</h2><br>" +
-    "<p>"+topic.content.replace(/\n/g,"<br>")+"</p>";
+  document.getElementById("topicTitle").innerText = topic.title || "";
+  document.getElementById("textBox").innerText = topic.content || "";
+  document.getElementById("exampleBox").innerText = topic.example || "";
+  document.getElementById("programBox").innerText = topic.program || "";
 }
 
-/* ===== NEXT / PREVIOUS ===== */
+/* ===== NAVIGATION ===== */
 function nextLesson(){
   if(currentIndex < topics.length-1){
     showLesson(currentIndex+1);
@@ -255,18 +302,16 @@ function prevLesson(){
   }
 }
 
-/* ===== RUN CODE ===== */
-function runCode(){
+/* ===== JSON EDITOR LOGIC ===== */
+function runJSON(){
   let code = document.getElementById("code").value;
   let output = document.getElementById("output");
 
   try{
-    let result = eval(code);
-    if(result !== undefined){
-      output.innerText = result;
-    }
-  }catch(err){
-    output.innerText = err;
+    let parsed = JSON.parse(code);
+    output.innerText = JSON.stringify(parsed, null, 2);
+  }catch(error){
+    output.innerText = "Invalid JSON:\n" + error.message;
   }
 }
 
