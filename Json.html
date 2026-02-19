@@ -1,1 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Course - கல்வி வானம்</title>
 
+<style>
+:root{
+  --primary:#1E88E5;
+  --dark:#0D47A1;
+  --light:#E3F2FD;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  background:var(--light);
+}
+
+/* ===== TOPBAR ===== */
+.topbar{
+  background:white;
+  padding:12px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:2px solid var(--primary);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:1000;
+}
+
+.menu-btn{
+  font-size:22px;
+  cursor:pointer;
+  color:var(--dark);
+}
+
+.logo{
+  font-size:14px;
+  font-weight:bold;
+  color:var(--primary);
+}
+
+/* ===== LANGUAGE BAR ===== */
+.lang-bar{
+  margin-top:48px;
+  background:var(--primary);
+  padding:10px 0;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+.lang-bar a{
+  display:inline-block;
+  color:white;
+  padding:6px 18px;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* ===== SIDE MENU ===== */
+.sidemenu{
+  position:fixed;
+  left:-260px;
+  top:0;
+  width:250px;
+  height:100%;
+  background:white;
+  box-shadow:2px 0 10px rgba(0,0,0,0.2);
+  transition:0.3s;
+  padding-top:60px;
+  overflow-y:auto;
+  z-index:2000;
+}
+
+.sidemenu.active{
+  left:0;
+}
+
+.sidemenu div{
+  padding:12px 20px;
+  border-bottom:1px solid #eee;
+  cursor:pointer;
+}
+
+.sidemenu div:hover{
+  background:var(--light);
+}
+
+/* ===== CONTENT ===== */
+.content{
+  padding:20px;
+}
+
+.lesson-area{
+  background:white;
+  min-height:250px;
+  padding:30px;
+  border-radius:10px;
+  margin-top:20px;
+}
+
+/* NAV BUTTONS */
+.nav-buttons{
+  margin-top:20px;
+  display:flex;
+  justify-content:space-between;
+}
+
+button{
+  padding:8px 15px;
+  border:none;
+  border-radius:5px;
+  cursor:pointer;
+  background:var(--primary);
+  color:white;
+}
+
+button:hover{
+  background:var(--dark);
+}
+
+/* CODE EDITOR */
+.editor{
+  margin-top:30px;
+}
+
+textarea{
+  width:100%;
+  height:200px;
+  background:#111;
+  color:#00ff88;
+  border:none;
+  padding:15px;
+  border-radius:8px;
+  font-family:monospace;
+  resize:none;
+}
+
+.output{
+  margin-top:15px;
+  background:#111;
+  color:#00ff88;
+  padding:15px;
+  border-radius:8px;
+  min-height:120px;
+  font-family:monospace;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="logo">கல்வி வானம்</div>
+</div>
+
+<div class="lang-bar">
+  <a href="#">JSON</a>
+</div>
+
+<div class="sidemenu" id="menu"></div>
+
+<div class="content">
+
+  <div class="lesson-area" id="lesson">
+    Loading...
+  </div>
+
+  <div class="nav-buttons">
+    <button onclick="prevLesson()">Back</button>
+    <button onclick="nextLesson()">Next</button>
+  </div>
+
+  <div class="editor">
+    <textarea id="code">
+// Try JSON here
+let obj = {name:"Kalvi"};
+console.log(JSON.stringify(obj));
+    </textarea>
+
+    <button style="margin-top:10px;" onclick="runCode()">Run</button>
+
+    <div class="output" id="output">
+Output will appear here...
+    </div>
+  </div>
+
+</div>
+
+<script>
+
+let topics = [];
+let currentIndex = 0;
+
+const menu = document.getElementById("menu");
+const lessonDiv = document.getElementById("lesson");
+
+function toggleMenu(){
+  menu.classList.toggle("active");
+}
+
+/* ===== LOAD JSON FILE ===== */
+fetch("data/json.json")
+.then(res => res.json())
+.then(data => {
+  topics = data.topics;
+  createMenu();
+  showLesson(0);
+});
+
+/* ===== CREATE MENU FROM JSON ===== */
+function createMenu(){
+  menu.innerHTML = "";
+
+  topics.forEach((topic,index)=>{
+    let item = document.createElement("div");
+    item.innerText = topic.title;
+    item.onclick = ()=>{
+      showLesson(index);
+      toggleMenu();
+    };
+    menu.appendChild(item);
+  });
+}
+
+/* ===== SHOW LESSON ===== */
+function showLesson(index){
+  currentIndex = index;
+  let topic = topics[index];
+
+  lessonDiv.innerHTML =
+    "<h2>"+topic.title+"</h2><br>" +
+    "<p>"+topic.content.replace(/\n/g,"<br>")+"</p>";
+}
+
+/* ===== NEXT / PREVIOUS ===== */
+function nextLesson(){
+  if(currentIndex < topics.length-1){
+    showLesson(currentIndex+1);
+  }
+}
+
+function prevLesson(){
+  if(currentIndex > 0){
+    showLesson(currentIndex-1);
+  }
+}
+
+/* ===== RUN CODE ===== */
+function runCode(){
+  let code = document.getElementById("code").value;
+  let output = document.getElementById("output");
+
+  try{
+    let result = eval(code);
+    if(result !== undefined){
+      output.innerText = result;
+    }
+  }catch(err){
+    output.innerText = err;
+  }
+}
+
+</script>
+
+</body>
+</html>
