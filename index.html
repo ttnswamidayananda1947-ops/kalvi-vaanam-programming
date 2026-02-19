@@ -23,7 +23,7 @@ body{
   background:var(--light);
 }
 
-/* ================= FIXED HEADER ================= */
+/* ===== FIXED HEADER ===== */
 header{
   background:white;
   padding:15px;
@@ -46,7 +46,7 @@ header h1{
   margin-top:5px;
 }
 
-/* ============= FIXED LANGUAGE BAR ============= */
+/* ===== FIXED LANGUAGE BAR ===== */
 .languages{
   background:var(--primary);
   padding:12px 0;
@@ -54,7 +54,7 @@ header h1{
   white-space:nowrap;
   position:fixed;
   width:100%;
-  top:90px;   /* header height adjust */
+  top:90px;
   z-index:999;
 }
 
@@ -68,17 +68,11 @@ header h1{
   font-size:14px;
   text-decoration:none;
   font-weight:bold;
-  transition:0.3s;
 }
 
-.languages a:hover{
-  background:var(--dark);
-  color:white;
-}
-
-/* ============= MAIN CONTENT ============= */
+/* ===== MAIN ===== */
 .main{
-  margin-top:150px;  /* header + language bar height */
+  margin-top:150px;
 }
 
 /* HERO */
@@ -94,7 +88,6 @@ header h1{
   margin-bottom:25px;
 }
 
-/* SEARCH */
 .search-box{
   display:flex;
   justify-content:center;
@@ -120,18 +113,38 @@ header h1{
   color:#bbdefb;
 }
 
-/* SEARCH RESULT */
+/* ===== RESULT CARDS ===== */
 #results{
-  margin-top:15px;
-  font-size:18px;
-  color:#FFD54F;
-  font-weight:bold;
+  margin-top:25px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
 }
 
-/* EXTRA CONTENT FOR SCROLL DEMO */
-.extra{
-  padding:60px 20px;
+.card{
+  background:white;
+  width:180px;
+  padding:20px;
+  border-radius:12px;
   text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.15);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+.card img{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  margin-bottom:10px;
+}
+
+.card h4{
+  color:var(--dark);
 }
 
 footer{
@@ -139,6 +152,7 @@ footer{
   color:white;
   text-align:center;
   padding:20px;
+  margin-top:50px;
 }
 </style>
 </head>
@@ -156,11 +170,7 @@ footer{
   <a href="#">JavaScript</a>
   <a href="#">Python</a>
   <a href="#">Java</a>
-  <a href="#">C</a>
   <a href="#">C++</a>
-  <a href="#">C#</a>
-  <a href="#">PHP</a>
-  <a href="#">SQL</a>
 </div>
 
 <div class="main">
@@ -176,16 +186,11 @@ footer{
 
   <div class="info-text" id="infoText">
     கல்வி வானம் என்பது மாணவர்கள் எளிமையாக நிரலாக்க மொழிகளை கற்றுக்கொள்ள உருவாக்கப்பட்ட ஒரு தளம். 
-    இங்கு அடிப்படையிலிருந்து மேம்பட்ட நிலை வரை பயிற்சிகள் வழங்கப்படும். 
-    உங்கள் எதிர்காலத்தை நிரலாக்கத்தின் மூலம் கட்டியெழுப்புங்கள்.
+    இங்கு அடிப்படையிலிருந்து மேம்பட்ட நிலை வரை பயிற்சிகள் வழங்கப்படும்.
   </div>
 
   <div id="results"></div>
-</section>
 
-<section class="extra">
-  <h3>More Content Coming Soon...</h3>
-  <p>Scroll down to see fixed header and language bar working perfectly.</p>
 </section>
 
 <footer>
@@ -196,31 +201,67 @@ footer{
 
 <script>
 
-const courses = ["html","css","javascript","python","java","c","c++","c#","php","sql"];
+const courses = [
+  {
+    name:"HTML",
+    image:"https://cdn-icons-png.flaticon.com/512/732/732212.png"
+  },
+  {
+    name:"CSS",
+    image:"https://cdn-icons-png.flaticon.com/512/732/732190.png"
+  },
+  {
+    name:"JavaScript",
+    image:"https://cdn-icons-png.flaticon.com/512/5968/5968292.png"
+  },
+  {
+    name:"Python",
+    image:"https://cdn-icons-png.flaticon.com/512/5968/5968350.png"
+  },
+  {
+    name:"Java",
+    image:"https://cdn-icons-png.flaticon.com/512/226/226777.png"
+  },
+  {
+    name:"C++",
+    image:"https://cdn-icons-png.flaticon.com/512/6132/6132222.png"
+  }
+];
 
 function liveSearch(){
   let input = document.getElementById("searchInput").value.toLowerCase();
   let resultDiv = document.getElementById("results");
   let infoText = document.getElementById("infoText");
 
+  resultDiv.innerHTML = "";
+
   if(input === ""){
-    resultDiv.innerHTML = "";
     infoText.style.display = "block";
     return;
   }
 
-  let matched = courses.filter(course => course.includes(input));
+  let matched = courses.filter(course =>
+    course.name.toLowerCase().includes(input)
+  );
 
   if(matched.length > 0){
-    resultDiv.innerHTML = "✔ " + matched.join(", ").toUpperCase() + " Course Available";
     infoText.style.display = "none";
+
+    matched.forEach(course => {
+      resultDiv.innerHTML += `
+        <div class="card">
+          <img src="${course.image}">
+          <h4>${course.name}</h4>
+        </div>
+      `;
+    });
   } else {
-    resultDiv.innerHTML = "✖ No Course Found";
     infoText.style.display = "none";
+    resultDiv.innerHTML = "<p style='color:#FFD54F;'>No Course Found</p>";
   }
 }
 
 </script>
 
 </body>
-  </html>
+</html>
