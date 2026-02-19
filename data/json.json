@@ -1,40 +1,40 @@
 {
-  "language": "JSON",
   "topics": [
+
     {
-      "id": "intro",
-      "title": "Introduction to JSON",
-      "content": "JSON stands for JavaScript Object Notation. It is a lightweight data format used for storing and transporting data."
+      "title": "JSON என்றால் என்ன?",
+      "content": "JSON (JavaScript Object Notation) என்பது ஒரு Data Format ஆகும். இது Server மற்றும் Client இடையே தகவல்களை பரிமாற பயன்படுத்தப்படுகிறது. JSON மிகவும் லைட் வெயிட் மற்றும் எளிதாக படிக்கக்கூடிய வடிவம் ஆகும். இது Key மற்றும் Value ஜோடிகளாக அமைந்திருக்கும்.",
+      "example": "உதாரணமாக, நீங்கள் ஒரு பள்ளி மாணவரின் தகவலை சேமிக்க வேண்டுமென நினைத்தால்:\n\nமாணவர் பெயர்: அருண்\nவயது: 15\nதரம்: 10\n\nஇந்த தகவலை JSON வடிவத்தில் Key மற்றும் Value ஆக எழுதலாம்.",
+      "program": "{\n  \"name\": \"அருண்\",\n  \"age\": 15,\n  \"class\": 10\n}"
     },
+
     {
-      "id": "syntax",
-      "title": "JSON Syntax",
-      "content": "JSON data is written in key-value pairs. Example:\n\n{\n  \"name\": \"Kalvi\",\n  \"age\": 18\n}"
+      "title": "JSON Structure (அமைப்பு)",
+      "content": "JSON இரண்டு முக்கிய அமைப்புகளை கொண்டது:\n1. Object → { }\n2. Array → [ ]\n\nObject என்பது Key மற்றும் Value ஜோடிகளைக் கொண்டது.\nArray என்பது பல Value-களை பட்டியலாக வைத்திருக்கும்.",
+      "example": "உதாரணமாக, ஒரு மாணவருக்கு பல பாடங்கள் இருப்பதாக வைத்துக்கொள்வோம்.\n\nஅவன் படிக்கும் பாடங்கள்:\nதமிழ், ஆங்கிலம், கணிதம்\n\nஇதை JSON Array மூலம் எழுதலாம்.",
+      "program": "{\n  \"name\": \"குமார்\",\n  \"subjects\": [\"தமிழ்\", \"ஆங்கிலம்\", \"கணிதம்\"]\n}"
     },
+
     {
-      "id": "datatypes",
       "title": "JSON Data Types",
-      "content": "JSON supports:\n\n• String\n• Number\n• Boolean\n• Array\n• Object\n• null"
+      "content": "JSON-ல் பல Data Types உள்ளன:\n\n1. String → \"Text\"\n2. Number → 10, 25\n3. Boolean → true / false\n4. Array → [ ]\n5. Object → { }\n6. Null → null\n\nஇந்த Data Types மூலம் பலவிதமான தகவல்களை சேமிக்க முடியும்.",
+      "example": "ஒரு Online Course விவரத்தை எடுத்துக்கொள்வோம்:\n\nCourse Name: Web Development\nPrice: 999\nAvailable: true\n\nஇதை JSON Data Types பயன்படுத்தி எழுதலாம்.",
+      "program": "{\n  \"courseName\": \"Web Development\",\n  \"price\": 999,\n  \"available\": true\n}"
     },
+
     {
-      "id": "object",
-      "title": "JSON Object",
-      "content": "Objects are enclosed in curly braces {} and contain key-value pairs."
+      "title": "Nested JSON (உள்ளமைவு JSON)",
+      "content": "ஒரு JSON Object-க்குள் மற்றொரு Object அல்லது Array இருப்பது Nested JSON எனப்படும். இது பெரிய Data Structure உருவாக்க பயன்படும்.",
+      "example": "ஒரு மாணவரின் விவரத்தில் அவன் முகவரி தகவலும் சேர்க்க வேண்டும் என நினைத்தால்:\n\nபெயர்: விஜய்\nவயது: 16\nமுகவரி:\n  நகரம்: சென்னை\n  நாடு: இந்தியா\n\nஇதனை Nested JSON ஆக எழுதலாம்.",
+      "program": "{\n  \"name\": \"விஜய்\",\n  \"age\": 16,\n  \"address\": {\n    \"city\": \"சென்னை\",\n    \"country\": \"இந்தியா\"\n  }\n}"
     },
+
     {
-      "id": "array",
-      "title": "JSON Array",
-      "content": "Arrays are enclosed in square brackets [] and can contain multiple values."
-    },
-    {
-      "id": "parse",
-      "title": "JSON.parse()",
-      "content": "JSON.parse() converts JSON string into JavaScript object."
-    },
-    {
-      "id": "stringify",
-      "title": "JSON.stringify()",
-      "content": "JSON.stringify() converts JavaScript object into JSON string."
+      "title": "JSON Parse மற்றும் Stringify",
+      "content": "JavaScript-ல் JSON தரவை பயன்படுத்த JSON.parse() மற்றும் JSON.stringify() பயன்படுகிறது.\n\nJSON.parse() → JSON String-ஐ Object ஆக மாற்றும்.\nJSON.stringify() → Object-ஐ JSON String ஆக மாற்றும்.",
+      "example": "உதாரணமாக Server-இல் இருந்து JSON String வந்தால் அதை Object ஆக மாற்றி பயன்படுத்த வேண்டும்.",
+      "program": "// JSON String\nlet data = '{\"name\":\"Kalvi Vaanam\",\"type\":\"Course\"}';\n\n// Convert String to Object\nlet obj = JSON.parse(data);\n\nconsole.log(obj.name);\n\n// Convert Object to String\nlet newString = JSON.stringify(obj);\nconsole.log(newString);"
     }
+
   ]
 }
