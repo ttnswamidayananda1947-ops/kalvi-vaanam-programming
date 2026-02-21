@@ -1,66 +1,69 @@
 {
-  "course_title": "JSON முழு கோர்ஸ் தமிழில்",
-  "description": "இந்த கோர்ஸ் மூலம் நீங்கள் JSON syntax, data types, structure மற்றும் practical examples-ஐ தமிழில் முழுமையாக கற்றுக்கொள்வீர்கள்.",
+  "course_title": "JSON கற்றுக்கொள்ளும் கோர்ஸ் - தமிழ்",
+  "description": "இந்தக் கோர்ஸில் நீங்கள் JSON என்ற data வை எப்படி எழுதுவது, வாசிப்பது, வேறோட data share பண்ணுவது என்று தெரிந்து கொள்ளலாம். எல்லாம் தமிழில், குழந்தைபோல் சுலபமாக explain பண்ணியிருக்கும்.",
   "topics": [
     {
-      "title": "JSON என்ன?",
-      "content": "JSON (JavaScript Object Notation) என்பது ஒரு data interchange format. இது human-readable ஆகவும் machine-readable ஆகவும் இருக்கும். இணையத்தளங்களிலும் API-களிலும் data share பண்ண பயன்படுத்தப்படும்.",
-      "example": "ஒரு சுலபமான JSON structure: { \"name\": \"Santhosh\", \"age\": 17 }",
-      "program": "இது ஒரு simple key-value pair example ஆகும்."
+      "title": "JSON என்றால் என்ன?",
+      "content": "JSON என்பது ஒரு data கொடுக்கும் புத்தகம் போல. ஒரு data share பண்ணும்போது அது human-readable (நம்மால் படிக்கக்கூடியது) ஆகவும், machine-readable (கம்ப்யூட்டர் புரிந்துக்கொள்ளும்) ஆகவும் இருக்கணும். அது { } இல் எழுதப்படும்.",
+      "example": "{ \"name\": \"மாப்பிள்ளை சாந்தோஷ்\", \"age\": 5 }",
+      "program": "இதில் name மற்றும் age என்ற இரண்டு தகவல்கள் உள்ளன. இதைப் போல நீங்கள் உங்கள் தகவலையும் JSON-ல் சேமிக்கலாம்.",
+      "lifetime_example": "நீங்கள் பள்ளியில் பிள்ளைகள் பெயர் மற்றும் வயதை ஒரு பட்டியலில் எழுதுகிறீர்கள். அதுதான் JSON போல வேலை செய்யும்."
     },
     {
-      "title": "JSON Data Types",
-      "content": "JSON-ல் முக்கிய data types: string, number, object, array, boolean, null. இந்த data types-ஐ நீங்கள் JSON-ல் பயன்படுத்த முடியும்.",
-      "example": "{\n  \"name\": \"Santhosh\",\n  \"age\": 17,\n  \"isStudent\": true,\n  \"subjects\": [\"Maths\", \"Chemistry\"],\n  \"address\": {\"city\": \"Madurai\", \"state\": \"Tamil Nadu\"},\n  \"marks\": null\n}",
-      "program": "இந்த JSON-ல் string, number, boolean, array, object, null எல்லாம் demonstrate பண்ணியிருக்கு."
+      "title": "JSON-ல் எந்தவெந்த data types இருக்கும்?",
+      "content": "JSON-ல் பைலிங் செய்யும் போது பல data வகைகள் இருக்கும்: எழுத்துகள் (string), எண்கள் (number), பட்டியல் (array), மற்ற data (object), உண்மை / பொய் (boolean), எதுவும் இல்லை (null).",
+      "example": "{\n  \"name\": \"சாந்தோஷ்\",\n  \"age\": 5,\n  \"isStudent\": true,\n  \"friends\": [\"அஜய்\", \"பிரியா\"],\n  \"address\": {\"city\": \"மதுரை\", \"state\": \"தமிழ்நாடு\"},\n  \"toys\": null\n}",
+      "program": "இதில் string, number, boolean, array, object, null எல்லாம் பயன்படுத்தியிருக்கிறோம்.",
+      "lifetime_example": "உங்கள் வீட்டில் உள்ள ஒரு குழந்தை 5 வயதில் இருக்கிறான். அவன் நண்பர்கள் யார், எந்த ஊரில் வாழ்கிறான், எது இல்லாமல் இருக்கிறது என்று பட்டியலிடலாம். அதுதான் JSON போல."
     },
     {
-      "title": "JSON Object Structure",
-      "content": "JSON-ல் object என்பது { } braces-இல் key-value pairs. ஒவ்வொரு key-உம் string-ஆக இருக்கணும், value எந்த data type-ஆலும் இருக்கலாம்.",
-      "example": "{\n  \"student\": {\n    \"name\": \"Santhosh\",\n    \"age\": 17\n  }\n}",
-      "program": "இது ஒரு nested JSON object example ஆகும்."
+      "title": "JSON Object structure எப்படி இருக்கும்?",
+      "content": "JSON-ல் object என்பது { } braces-இல் key-value pairs (தகவல் பெயர் - மதிப்பு) இடப்படும். ஒவ்வொரு key-உம் string ஆக இருக்கணும். Value எதுவும் இருக்கலாம்.",
+      "example": "{ \"student\": {\"name\": \"சாந்தோஷ்\", \"age\": 5} }",
+      "program": "ஒரு object-இல் பிள்ளையின் name மற்றும் age சேர்க்கலாம்.",
+      "lifetime_example": "ஒரு நண்பன் பெயர் மற்றும் வயது ஒரு பாட்டியில் எழுதுவது போல."
     },
     {
-      "title": "JSON Array Structure",
-      "content": "JSON-ல் array என்பது [ ] braces-இல் ஒரு sequence of values. values-அனைத்தும் data types-ஆக இருக்கலாம்.",
-      "example": "{\n  \"fruits\": [\"Apple\", \"Banana\", \"Mango\"]\n}",
-      "program": "இது ஒரு simple JSON array example."
+      "title": "JSON Array structure எப்படி இருக்கும்?",
+      "content": "JSON-ல் array என்பது [ ] braces-இல் ஒரு sequence of values. அதில் ஒரு data list போல இருக்கலாம்.",
+      "example": "{ \"fruits\": [\"மாம்பழம்\", \"செவ்வழசி\", \"ஆப்பிள்\"] }",
+      "program": "பழங்களின் பட்டியல் ஒரு JSON array.",
+      "lifetime_example": "நீங்கள் உங்கள் பொன் பொம்மைகள் பட்டியல் எழுதுவது போல."
     },
     {
       "title": "Nested JSON",
-      "content": "JSON-ல் objects மற்றும் arrays ஒருவருக்கொருவர் உள்ளே nested ஆக இருக்கலாம்.",
-      "example": "{\n  \"student\": {\n    \"name\": \"Santhosh\",\n    \"subjects\": [\"Maths\", \"Physics\"]\n  }\n}",
-      "program": "Nested JSON object + array example."
+      "content": "ஒரு JSON object-ல் மற்ற object அல்லது array உள்ளே இருக்கலாம். இதை nested JSON என்று கூறுவோம்.",
+      "example": "{\n  \"student\": {\n    \"name\": \"சாந்தோஷ்\",\n    \"toys\": [\"கூச்சி\", \"பொம்மை\"]\n  }\n}",
+      "program": "student என்ற object-ல் name மற்றும் toys என்ற array உள்ளது.",
+      "lifetime_example": "உங்கள் பள்ளி பையன் மற்றும் அவனுடைய பொம்மைகள் பட்டியல் nested போல இருக்கிறது."
     },
     {
       "title": "JSON Validation",
-      "content": "JSON data-ஐ validate பண்ணுவது மிகவும் முக்கியம். Comma, quotes, braces-ல் mistakes இருந்தால் JSON work பண்ணாது.",
-      "example": "{ \"name\": \"Santhosh\", \"age\": 17 }",
-      "program": "இந்த JSON சரியான format-ல் இருக்கிறது."
+      "content": "JSON-ல் comma, quotes, braces எல்லா இடமும் சரியாக இருக்கணும். தவறான இடத்தில் comma வச்சா error வரும்.",
+      "example": "{ \"name\": \"சாந்தோஷ்\", \"age\": 5 }",
+      "program": "சரியான JSON format-ல் எழுதப்பட்டுள்ளது.",
+      "lifetime_example": "புத்தகத்தில் பெயர், வயது எழுதி வைக்கும்போது ஒவ்வொரு இடமும் சரியாக வைக்கவேண்டும்."
     },
     {
       "title": "JSON Parsing in JavaScript",
-      "content": "JavaScript-ல் JSON.parse() method-ஐ பயன்படுத்தி JSON string-ஐ JavaScript object-ஆ convert பண்ணலாம்.",
-      "example": "let jsonData = '{\"name\": \"Santhosh\", \"age\": 17}';\nlet obj = JSON.parse(jsonData);\nconsole.log(obj.name);",
-      "program": "Output: Santhosh"
+      "content": "JavaScript-ல் JSON.parse() method மூலம் JSON string-ஐ object ஆக மாற்றலாம்.",
+      "example": "let jsonData = '{\"name\": \"சாந்தோஷ்\", \"age\": 5}';\nlet obj = JSON.parse(jsonData);\nconsole.log(obj.name);",
+      "program": "Output: சாந்தோஷ்",
+      "lifetime_example": "பள்ளியில் ஆசிரியர் JSON-ல் data கொடுத்தார். அதை நம்மால் படித்து பயன்படுத்தலாம்."
     },
     {
       "title": "JSON Stringify in JavaScript",
-      "content": "JavaScript object-ஐ JSON string-ஆ convert செய்ய JSON.stringify() பயன்படுத்தப்படும்.",
-      "example": "let obj = {name: \"Santhosh\", age: 17};\nlet jsonData = JSON.stringify(obj);\nconsole.log(jsonData);",
-      "program": "Output: '{\"name\":\"Santhosh\",\"age\":17}'"
+      "content": "JavaScript object-ஐ JSON string-ஆ convert செய்ய JSON.stringify() பயன்படுத்தலாம்.",
+      "example": "let obj = {name: \"சாந்தோஷ்\", age: 5};\nlet jsonData = JSON.stringify(obj);\nconsole.log(jsonData);",
+      "program": "Output: '{\"name\":\"சாந்தோஷ்\",\"age\":5}'",
+      "lifetime_example": "உங்கள் நண்பரைப் பற்றிய data-ஐ காகிதத்தில் எழுதுவது போல."
     },
     {
-      "title": "Practical Example: Student Data",
-      "content": "ஒரு real-world example: ஒரு school-ல் students-ஐ JSON-ல் store பண்ணலாம்.",
-      "example": "{\n  \"students\": [\n    {\"name\": \"Santhosh\", \"age\": 17, \"grade\": \"11th\"},\n    {\"name\": \"Priya\", \"age\": 16, \"grade\": \"10th\"}\n  ]\n}",
-      "program": "JSON structure மூலம் multiple student records save செய்யலாம்."
-    },
-    {
-      "title": "Advanced: JSON with API",
-      "content": "API-கள் JSON format-ல் data return பண்ணும். AJAX / Fetch API / REST API பயன்படுத்தி JSON handle பண்ணலாம்.",
-      "example": "fetch('https://api.example.com/students')\n  .then(response => response.json())\n  .then(data => console.log(data));",
-      "program": "API call மூலம் JSON data handle பண்ணும் method."
+      "title": "Practical Example: Life Time Student Data",
+      "content": "ஒரு real-life example: ஒரு பள்ளியில் அனைத்து மாணவர்களின் பெயர், வயது, வகுப்பு JSON-ல் வைத்திருக்கும்.",
+      "example": "{\n  \"students\": [\n    {\"name\": \"சாந்தோஷ்\", \"age\": 5, \"grade\": \"KG\"},\n    {\"name\": \"பிரியா\", \"age\": 6, \"grade\": \"1st\"}\n  ]\n}",
+      "program": "பல மாணவர்களின் data JSON structure மூலம் சேமிக்கலாம்.",
+      "lifetime_example": "உங்கள் entire KG class-ஐ ஒரு பட்டியலில் எழுதுவது போல."
     }
   ]
 }
